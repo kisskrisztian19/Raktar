@@ -34,11 +34,16 @@ namespace Raktar
             StreamReader olvas = new StreamReader("rendeles.csv");
             while (!olvas.EndOfStream)
             {
-                string[] sor = olvas.ReadLine().Split(';');
+                string sor = olvas.ReadLine();
+                string[] adat = sor.Split(';');
 
-                if (sor[0] == "M")
+                if (adat[0] == "M")
                 {
-                    rendelesek.Add(new Megrendeles(sor[1], sor[2], sor[3]));
+                    rendelesek.Add(new Megrendeles(adat[1], adat[2], adat[3]));
+                }
+                else
+                {
+                    rendelesek[rendelesek.Count - 1].termekek.Add(sor);
                 }
             }
             olvas.Close();
